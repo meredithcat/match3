@@ -1,0 +1,42 @@
+
+body {
+	margin:0;
+	padding:0;
+	background:#888;
+}
+.playArea {
+	background:#000;
+	border:10px solid #333;
+	margin:30px auto 0;
+	box-shadow:5px 5px 10px #444;
+	position:relative;
+	overflow:hidden;
+}
+.square {
+  position:absolute;
+  margin: 10px;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+
+@keyframes toggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(30deg);
+  }
+  75% {
+    transform: rotate(-30deg)
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.toggle {
+   animation: toggle 0.5s;
+}
