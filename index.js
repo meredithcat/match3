@@ -94,8 +94,8 @@ class PlayArea {
     this.domElement = document.createElement('div');
     document.body.appendChild(this.domElement);
     this.domElement.classList.add('playArea');
-    const width = Game.rows * Game.SQUARE_WIDTH + Game.MARGIN;
-    const height = Game.cols * Game.SQUARE_HEIGHT + Game.MARGIN;
+    const width = Game.ROWS * Game.SQUARE_WIDTH + Game.MARGIN;
+    const height = Game.COLS * Game.SQUARE_HEIGHT + Game.MARGIN;
     applyCSS(this.domElement, {
       width: `${width}px`,
       height: `${height}px`
