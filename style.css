@@ -4,14 +4,37 @@ body {
 	padding:0;
 	background:#888;
 }
-.playArea {
+#container {
 	background:#000;
-	border:10px solid #333;
-	margin:30px auto 0;
-	box-shadow:5px 5px 10px #444;
+	border: 10px solid #333;
+  color: #fff;
+  box-shadow:5px 5px 10px #444;
+  font-family: monospace;
+  font-size: 30px;
+  height: 550px;
+	margin: 30px auto 0;
 	position:relative;
-	overflow:hidden;
+  overflow:hidden;
+  width: 510px;
 }
+
+.playArea {
+  position: relative;
+  top: 40px;
+}
+
+.title {
+  display: block;
+  float: left;
+  padding: 0 10px;
+}
+
+.score-div {
+  display: block;
+  float: right;
+  padding: 0 10px;
+}
+
 .square {
   position:absolute;
   margin: 10px;
@@ -37,6 +60,23 @@ body {
   }
 }
 
+@keyframes disappear {
+  0% {
+    transform: rotate(0deg) scale(1, 1);
+  }
+  100% {
+    transform: rotate(360deg) scale(0, 0);
+  }
+}
+
 .toggle {
    animation: toggle 0.5s;
+}
+
+.disappear {
+  animation: disappear 1s;
+}
+
+.asdf {
+  width: 10px;
 }
