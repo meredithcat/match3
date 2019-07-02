@@ -38,6 +38,9 @@ class Game {
    * Postcondition: `this.squares` should contain a 2D array of Square objects.
    */
   initSquares() {
+    /**
+     * TODO IN PART 1: Fill in the missing code.
+     */
     for (let row = 0; row < Game.ROWS; row++){
       this.squares[row] = [];
       for (let col = 0; col < Game.COLS; col++) {
@@ -51,7 +54,8 @@ class Game {
   }
 
   /**
-   * Click handler for when a square is clicked.
+   * Click handler for when a square is clicked. Returns a function that can be passed
+   * as a callback.
    * 
    * @param {Square} square The clicked Square object.
    */
@@ -70,6 +74,9 @@ class Game {
    * Draw all components.
    */
   draw() {
+    /**
+     * TODO IN PART 1: Fill in the missing code.
+     */
     for (let row = 0; row < Game.ROWS; row++){
       for (let col = 0; col < Game.COLS; col++) {
         this.squares[row][col].draw();
@@ -110,8 +117,8 @@ class Game {
       /* OPTIONAL TODO: If the swap didn't result in a match, undo the swap. */
 
     } else { // If it is an invalid swap
-      square1.toggle();
-      square2.toggle();
+      square1.wiggle();
+      square2.wiggle();
     }
   }
 
@@ -247,12 +254,10 @@ class Game {
     }
     this.draw();
 
-    // Recursively remove the next set of matches.
-    if (skipAnimations) {
-      this.removeMatches(true /* skipAnimations */);
-    } else {
-      setTimeout(this.removeMatches.bind(this), 1000);
-    }
+    /** 
+     * TODO IN PART 3: If skipAnimations is false, put in a delay so that animations will appear.
+     */
+    this.removeMatches(true /* skipAnimations */);
   }
 }
 
@@ -305,8 +310,7 @@ class Square {
    *   when a square is clicked.
    */
   constructor(board, row, col, handleClick) {
-    this.color = Square.colors[
-      Math.floor(Math.random() * Square.colors.length)];
+    this.color = Square.colors[Math.floor(Math.random() * Square.colors.length)];
     this.row = row;
     this.col = col;
 
@@ -314,8 +318,6 @@ class Square {
     board.appendChild(this.domElement);
     this.domElement.classList.add('square');
     applyCSS(this.domElement, {
-      left: `${this.col * Game.SQUARE_WIDTH}px`,
-      top: `${-Game.SQUARE_HEIGHT}px`,
       width: `${Game.SQUARE_WIDTH-Game.MARGIN}px`,
       height: `${Game.SQUARE_HEIGHT-Game.MARGIN}px`,
       background: this.color,
@@ -327,6 +329,10 @@ class Square {
    * Draw the Square by updating any changed fields.
    */
   draw() {
+    /**
+     * TODO IN PART 1: Fill in the missing code. HINT: Use the `applyCSS` helper method to update
+     * the element's CSS attributes.
+     */
     setTimeout((function() {
       applyCSS(this.domElement, {
         left: `${this.col * Game.SQUARE_WIDTH}px`,
@@ -349,10 +355,10 @@ class Square {
   /**
    * Animate the square after it was involved in an invalid swap.
    */
-  toggle() {
-    this.domElement.classList.add('toggle');
+  wiggle() {
+    this.domElement.classList.add('wiggle');
     this.domElement.addEventListener('animationend',  (function() {
-      this.domElement.classList.remove('toggle');    
+      this.domElement.classList.remove('wiggle');    
     }).bind(this));
   }
 
