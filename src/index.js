@@ -254,10 +254,12 @@ class Game {
     }
     this.draw();
 
-    /** 
-     * TODO IN PART 3: If skipAnimations is false, put in a delay so that animations will appear.
-     */
-    this.removeMatches(true /* skipAnimations */);
+    // Recursively remove the next set of matches.
+    if (skipAnimations) {
+      this.removeMatches(true /* skipAnimations */);
+    } else {
+      setTimeout(this.removeMatches.bind(this), 1000);
+    }
   }
 }
 
@@ -317,7 +319,10 @@ class Square {
     this.domElement = document.createElement('div');
     board.appendChild(this.domElement);
     this.domElement.classList.add('square');
+    console.log({row, col, left: Game.SQUARE_WIDTH*col, top: -Game.SQUARE_HEIGHT});
     applyCSS(this.domElement, {
+      left: `${Game.SQUARE_WIDTH * this.col}px`,
+      top: `${-Game.SQUARE_HEIGHT}px`,
       width: `${Game.SQUARE_WIDTH-Game.MARGIN}px`,
       height: `${Game.SQUARE_HEIGHT-Game.MARGIN}px`,
       background: this.color,
@@ -357,8 +362,8 @@ class Square {
    */
   wiggle() {
     this.domElement.classList.add('wiggle');
-    this.domElement.addEventListener('animationend',  (function() {
-      this.domElement.classList.remove('wiggle');    
+    this.domElement.addEventListener('animationend', (function() {
+      this.domElement.classList.remove('wiggle');
     }).bind(this));
   }
 
